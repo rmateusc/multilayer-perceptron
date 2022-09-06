@@ -1,8 +1,10 @@
 # multilayer-perceptron
 This repository contains the implementation of a Multilayer Perceptron from
 scratch in Python.
+
 Basic Neuron Model:
-<img source='neuron.png' alt='Perceptron' width="316" height="362"/>
+
+<img src='neuron.png' alt='Perceptron' width="316" height="362"/>
 
 Author: [@rmateusc](https://github.com/rmateusc)
 
