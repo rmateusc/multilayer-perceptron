@@ -4,7 +4,7 @@ scratch in Python.
 
 Basic Neuron Model:
 
-<img src='neuron.png' alt='Perceptron' width="316" height="362"/>
+<img src="neuron.png" alt="Perceptron" width="362" height="316"/>
 
 Author: [@rmateusc](https://github.com/rmateusc)
 
