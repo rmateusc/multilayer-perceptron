@@ -53,10 +53,8 @@ class Network:
                 loss = self.loss(y_i, output)
                 losses = np.append(losses, loss, axis=0)
 
-
                 # back prop for each layer
                 previous_grads = [self.loss_derivative(y_i, output)]
-                # print(previous_grads[-1].shape)
 
                 for layer in self.layers[::-1]:
                     local_grads = layer.backward_propagation(previous_grads[-1])
@@ -64,7 +62,6 @@ class Network:
                     layer.update_weights(learning_rate)
 
                     grads = layer.gradients_cache()
-                    # print(f'done with layer {layer}')
 
             # Calculate average loss for each epoch
             print(f'Epoch [{epoch+1}|{epochs}]:')

@@ -43,14 +43,7 @@ class PerceptronLayer(Layer):
         local_field_gradient = (
             previous_gradient * self.activation_derivative(self.local_field)
         )
-        # print(f'previous gradient: {previous_gradient.shape}')
-        # print(f'activation derivative: {self.activation_derivative(self.local_field).shape}')
-        # print(f'local field gradient: {local_field_gradient.shape}')
-        # print(f'previous output: {previous_output.shape}')
-        # print(f'weights: {self.weights.shape}')
-        # Calculate weights gradient
         self.weights_delta = np.dot(local_field_gradient, self.input.T)
-        # self.weights_delta = np.dot(local_field_gradient, previous_output.T)
         # Calculate local gradient
         local_gradient = np.dot(self.weights.T, local_field_gradient)
         # Return local gradient
