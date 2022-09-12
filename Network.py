@@ -35,6 +35,7 @@ class Network:
         samples, features = x_train.shape
         classes = y_train.shape[1]
         # train for every epoch
+        train_loss = []
         for epoch in range(epochs):
             # losses for every epoch
             losses = np.empty([3, 1])
@@ -66,3 +67,5 @@ class Network:
             # Calculate average loss for each epoch
             print(f'Epoch [{epoch+1}|{epochs}]:')
             print(f'  Loss: {losses.mean()}')
+            train_loss.append(losses.mean())
+        return np.mean(train_loss)
