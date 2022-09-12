@@ -7,7 +7,7 @@ Contains:
 """
 import numpy as np
 
-def quadratic_loss(y_true, y_pred):
+def quadratic_mean_loss(y_true, y_pred):
     """Computes the quadratic cost given in equation
 
     Arguments:
@@ -18,11 +18,11 @@ def quadratic_loss(y_true, y_pred):
     cost -- quadratic cost given equation
     """
     # Compute the quadratic cost
-    cost = 1/2 * np.sum(np.square(y_true - y_pred))
+    cost = 1/2 * np.square(y_pred - y_true)
 
     return cost
 
-def quadratic_loss_derivative(y_true, y_pred):
+def quadratic_mean_loss_derivative(y_true, y_pred):
     """Computes the derivative of the quadratic cost function
 
     Arguments:
@@ -33,6 +33,6 @@ def quadratic_loss_derivative(y_true, y_pred):
     dL -- derivative of the quadratic loss function
     """
     # Compute the derivative of the quadratic cost
-    dL = -(y_true - y_pred)
+    dL = y_pred - y_true
 
     return dL

@@ -12,7 +12,6 @@ class PerceptronLayer(Layer):
         ):
         # Initialize parameters: weights and bias
         self.weights = np.random.randn(output_size, input_size)
-        self.bias = np.zeros(output_size)
         # Define activation function and derivate
         if activation_function == 'linear':
             self.activation_function = linear
@@ -33,19 +32,18 @@ class PerceptronLayer(Layer):
         # Input of the layer
         self.input = inputs
         # Local field of the layer
-        self.local_field = np.dot(self.weights, inputs) + self.bias
+        self.local_field = np.dot(self.weights, inputs)
         # Output of the layer
         self.output = self.activation(self.local_field)
         # Return output
         return self.output
 
-    def backward_propagation(self, previous_gradient, learning_rate):
+    def backward_propagation(self, previous_gradient):
         # Calculate local field gradient
-        local_field_gradient = self.activation_derivative(self.local_field) * previous_gradient
-        # Calculate weights gradient
+        local_field_gradient = (
+            previous_gradient * self.activation_derivative(self.local_field)
+        )
         self.weights_delta = np.dot(local_field_gradient, self.input.T)
-        # Calculate bias gradient
-        self.bias_delta = local_field_gradient.mean()
         # Calculate local gradient
         local_gradient = np.dot(self.weights.T, local_field_gradient)
         # Return local gradient
@@ -54,15 +52,7 @@ class PerceptronLayer(Layer):
     def update_weights(self, learning_rate):
         # Update weights
         self.weights -= learning_rate * self.weights_delta
-        # Update bias
-        self.bias -= learning_rate * self.bias_delta
 
     def gradients_cache(self):
         # Return gradients cache
-        cache = {
-            'weights': self.weights_delta,
-            'bias': self.bias_delta
-        }
-        return cache
-
-
+        return self.weights_delta
